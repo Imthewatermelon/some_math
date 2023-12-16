@@ -9,12 +9,17 @@ import (
 )
 
 func main() {
-	Xs := []float64{0, 0.5, 1.0, 1.5, 2.0, 2.5, 3.0}
-	Ys := []float64{4.2, 26.1, 40.1, 46.0, 43.9, 33.7, 15.8}
-	s, err := sketcher.NewSketcher(Xs, Ys, []func(x float64) float64{func(x float64) float64 { return 275.428 * math.Pow(x, 2) }}, 0, 10, 0, 50, "Somethin2g.png")
+	Xs := []float64{0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12}
+	Ys := []float64{50, 62, 73, 80, 71, 60, 51, 43, 29, 20, 28, 41, 49}
+
+	s, err := sketcher.NewSketcher(Xs, Ys, []func(x float64) float64{
+		func(x float64) float64 { return 30*math.Sin(math.Pi*x/6) + 50 },
+	},
+		0, 12, 20, 80, "Somethin2g.png")
 	if err != nil {
 		panic(err)
 	}
+
 	err = s.Sketch()
 	if err != nil {
 		panic(err)
